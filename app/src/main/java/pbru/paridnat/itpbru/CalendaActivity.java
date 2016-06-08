@@ -2,8 +2,10 @@ package pbru.paridnat.itpbru;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.CalendarView;
 
 public class CalendaActivity extends AppCompatActivity {
@@ -49,12 +51,25 @@ public class CalendaActivity extends AppCompatActivity {
         builder.setPositiveButton("รายรับ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
+
+                Intent intent = new Intent(CalendaActivity.this, UploadAccount.class);
+                intent.putExtra("Login", getIntent().getStringArrayExtra("Login"));
+                intent.putExtra("InOut", 0);
+                startActivity(intent);
+
                 dialogInterface.dismiss();
+
             }
         });
         builder.setNeutralButton("รายจ่าย", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int which) {
+
+                Intent intent = new Intent(CalendaActivity.this, UploadAccount.class);
+                intent.putExtra("Login", getIntent().getStringArrayExtra("Login"));
+                intent.putExtra("InOut", 1);
+                startActivity(intent);
+
                 dialogInterface.dismiss();
             }
         });
