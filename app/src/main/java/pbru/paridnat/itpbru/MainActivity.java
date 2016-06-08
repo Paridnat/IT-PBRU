@@ -9,21 +9,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+// *** Technic shortcut key "command + 6" is hide dialog show debug
+// *** Log.i("test", "test debug" + i); Debug values
 
 public class MainActivity extends AppCompatActivity {
 
     //Explicit
     private MyManage myManage;
     private static final String urlJSON = "http://swiftcodingthai.com/pbru2/get_user_master.php";
+    private EditText userEditText, passwordEditText;
+    private String userString, passwordString; // get value form EditText
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Bind Widget
+        userEditText = (EditText) findViewById(R.id.editText5);
+        passwordEditText = (EditText) findViewById(R.id.editText6);
 
         myManage = new MyManage(this);
 
@@ -34,6 +47,29 @@ public class MainActivity extends AppCompatActivity {
         mySynJSON();
 
     } // Main Method
+
+
+    public void clickSignIn(View view) {
+
+        userString = userEditText.getText().toString().trim();
+        passwordString = userEditText.getText().toString().trim();
+
+        //Check Space
+        if (userString.equals("") || passwordString.equals("")) {
+            MyAlert myAlert = new MyAlert();
+            myAlert.myDialog(this, "Have Space", "Please fill all every blank");
+        } else {
+            checkUserAndPassword();
+//            startActivity(new Intent(MainActivity.this, ServiceActivity.class));
+//            Log.i("test", "=====>" +test);
+        }
+
+    }
+
+    private void checkUserAndPassword() {
+
+    }// Check User
+
 
     private void mySynJSON() {
 
@@ -87,6 +123,30 @@ public class MainActivity extends AppCompatActivity {
 
                 progressDialog.dismiss();
                 Log.d("7June", "JSON ==> " + s);
+
+                JSONArray jsonArray = new JSONArray(s);
+
+                // จองหน่วยความจำให้กับ array ทั้งสี่ตัว
+                String[] idStings = new String[jsonArray.length()];
+                String[] nameStrings = new String[jsonArray.length()];
+                String[] surnameString = new String[jsonArray.length()];
+                String[] userString = new String[jsonArray.length()];
+                String[] passwordString = new String[jsonArray.length()];
+
+                for (int i=0; i<jsonArray.length(); i++) {
+
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    idStings[i] = jsonObject.getString("id");
+                    nameStrings[i] = jsonObject.getString(MyManage.column_name);
+                    surnameString[i] = jsonObject.getString(MyManage.column_surname);
+                    userString[i] = jsonObject.getString(MyManage.column_user);
+                    passwordString[i] = jsonObject.getString(MyManage.column_password);
+
+                    myManage.addNewUser(idStings[i], nameStrings[i],
+                            surnameString[i], userString[i], passwordString[i]);
+                }
+
 
             } catch (Exception e) {
                 e.printStackTrace();

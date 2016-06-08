@@ -7,12 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="pbru.paridnat.itpbru.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    tools:context="pbru.paridnat.itpbru.MainActivity"
+    android:background="@drawable/wallpapers_a_03">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -25,7 +21,8 @@
             android:layout_height="wrap_content"
             android:text="SIGN IN"
             android:id="@+id/button"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:onClick="clickSignIn" />
 
         <Button
             android:layout_width="wrap_content"
@@ -34,6 +31,41 @@
             android:id="@+id/button2"
             android:layout_weight="1"
             android:onClick="clickSignUpMain" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:layout_centerHorizontal="true"
+        android:padding="20dp"
+        android:layout_marginTop="-70dp">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="350dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/logo_carabao" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText5"
+            android:hint="User :"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textColorHint="#e4e4e4" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText6"
+            android:hint="Password :"
+            android:layout_marginTop="10dp"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#e4e4e4" />
     </LinearLayout>
 
 </RelativeLayout>
