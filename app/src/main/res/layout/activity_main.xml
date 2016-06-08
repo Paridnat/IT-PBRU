@@ -22,7 +22,10 @@
             android:text="SIGN IN"
             android:id="@+id/button"
             android:layout_weight="1"
-            android:onClick="clickSignIn" />
+            android:onClick="clickSignIn"
+            android:clickable="false"
+            android:background="@color/button1"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="wrap_content"
@@ -30,7 +33,9 @@
             android:text="@string/signup"
             android:id="@+id/button2"
             android:layout_weight="1"
-            android:onClick="clickSignUpMain" />
+            android:onClick="clickSignUpMain"
+            android:background="@color/button2"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
     <LinearLayout
