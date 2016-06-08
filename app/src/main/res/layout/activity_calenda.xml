@@ -17,7 +17,8 @@
         android:id="@+id/button4"
         android:layout_alignParentBottom="true"
         android:background="@color/button2"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:onClick="clickShowGraph" />
 
     <CalendarView
         android:layout_width="match_parent"

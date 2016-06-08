@@ -19,7 +19,8 @@
         </activity>
         <activity android:name=".SignUpActivity" />
         <activity android:name=".CalendaActivity" />
-        <activity android:name=".UploadAccount"></activity>
+        <activity android:name=".UploadAccount" />
+        <activity android:name=".GraphActivity"></activity>
     </application>
 
 </manifest>
